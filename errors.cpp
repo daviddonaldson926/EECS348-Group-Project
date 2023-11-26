@@ -13,3 +13,6 @@ int invalid_char(string expression):
             return 1;
             
     return 0;
+
+int invalid_paran(string expression):
+    return 0;
