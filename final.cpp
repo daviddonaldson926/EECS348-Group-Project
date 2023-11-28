@@ -8,6 +8,8 @@
 
 using std::string;
 using std::vector;
+using std::stack;
+using std::map;
 using std::cout;
 using std::endl;
 
@@ -141,9 +143,9 @@ int divide_by_zero(string expr) {
                     if (front >= back) {
                         string sub_expr = expr.substr(i, n-i);
                         //Order of operations with sub_expr passed in
-                        //if (!(orderOfOperation(sub_expr))) {
-                        //    return 1;
-                        //}
+                        if (evaluate(sub_expr) == 0) {
+                            return 1;
+                        }
                     }
                 }
             }
@@ -232,10 +234,10 @@ double applyOp(double a, double b, char op){
 
 // Function to evaluate a given arithmetic expression
 double evaluate(const std::string &expression){
-    std::stack<double> values; // Stack to store values (numbers)
-    std::stack<char> ops; // Stack to store operators
+    stack<double> values; // Stack to store values (numbers)
+    stack<char> ops; // Stack to store operators
     // Map to store precedence of operators
-    std::map<char, int> precedence = {{'+', 1}, {'-', 1}, {'*', 2}, {'/', 2}, {'^', 3}, {'%', 2}};
+    map<char, int> precedence = {{'+', 1}, {'-', 1}, {'*', 2}, {'/', 2}, {'^', 3}, {'%', 2}};
 
     // Iterating over each character of the expression
     for(int i = 0; i < expression.length(); i++){
@@ -299,8 +301,8 @@ double evaluate(const std::string &expression){
 }
 
 int main(){
-    std::string expression; // Recognizes expression as a string
-    std::cout << "Enter the expression: "; // Prompts the user for an expression
+    string expression; // Recognizes expression as a string
+    cout << "Enter the expression: "; // Prompts the user for an expression
     std::getline(std::cin, expression); // Reading the entire line as an expression
 
     vector<string> error = check_errors(expression); 
@@ -308,7 +310,7 @@ int main(){
 
     if (check == 0) {
         double result = evaluate(expression); // Evaluating the expression
-        std::cout << "Result: " << result << std::endl; // Displaying the result
+        cout << "Result: " << result << endl; // Displaying the result
     }
 
     return 0; // End of main function
