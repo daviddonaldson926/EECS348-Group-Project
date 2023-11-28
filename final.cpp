@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
-#include <vector>
+#include <string> //Used for implementing strings 
+#include <vector> //Used for implementing vectors 
 
 #include <stack> // Used for implementing stack data structures
 #include <cmath> // Includes mathematical functions like pow() and fmod()
@@ -124,6 +124,7 @@ int mismatch_parantheses(string expr) {
     }
 }
 
+//Checks for errors in a certain expression by calling various error functions 
 vector<string> check_errors(string expr) {
     vector<string> error;
 
@@ -160,6 +161,7 @@ vector<string> check_errors(string expr) {
     return error;
 }
 
+//Takes error vector and prints appropriate error response 
 int print_errors(vector<string> error) {
     vector<string>::iterator line = error.begin();
 
@@ -276,8 +278,8 @@ int main(){
     std::cout << "Enter the expression: "; // Prompts the user for an expression
     std::getline(std::cin, expression); // Reading the entire line as an expression
 
-    vector<string> error = check_errors(expression); 
-    int check = print_errors(error); 
+    vector<string> error = check_errors(expression); //Checks for errors 
+    int check = print_errors(error); //Prints error messages according to error vector 
 
     if (check == 0) {
         double result = evaluate(expression); // Evaluating the expression
