@@ -178,10 +178,7 @@ vector<string> check_errors(string expr) {
     return error;
 }
 
-int main() {
-    string expr = "((5+3)*8)";
-    vector<string> error = check_errors(expr);
-
+void print_errors(vector<string> error) {
     vector<string>::iterator line = error.begin();
 
     cout << "Possible errors in the expression:\n";
@@ -192,5 +189,13 @@ int main() {
     } else {
         cout << "No errors found\n";
     }
+}
+
+int main() {
+    string expr = "((5+3)*8)";
+    vector<string> error = check_errors(expr);
+
+    print_errors(error);
+    
     return 0;
 }
