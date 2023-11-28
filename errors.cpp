@@ -7,7 +7,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "calculator.h"
 using std::string;
 using std::vector;
 using std::cout;
@@ -128,9 +127,9 @@ int divide_by_zero(string expr) {
                     if (front >= back) {
                         string sub_expr = expr.substr(i, n-i);
                         //Order of operations with sub_expr passed in
-                        if (evaluate(sub_expr) == 0) {
-                            return 1;
-                        }
+                        //if (evaluate(sub_expr) == 0) {
+                        //    return 1;
+                        //}
                     }
                 }
             }
