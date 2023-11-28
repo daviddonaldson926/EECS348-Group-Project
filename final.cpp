@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
-#include <vector>
+#include <string> //Used for implementing strings 
+#include <vector> //Used for implementing vectors 
 
 #include <stack> // Used for implementing stack data structures
 #include <cmath> // Includes mathematical functions like pow() and fmod()
@@ -143,9 +143,9 @@ int divide_by_zero(string expr) {
                     if (front >= back) {
                         string sub_expr = expr.substr(i, n-i);
                         //Order of operations with sub_expr passed in
-                        if (evaluate(sub_expr) == 0) {
-                            return 1;
-                        }
+                        //if (!(orderOfOperation(sub_expr))) {
+                        //    return 1;
+                        //}
                     }
                 }
             }
@@ -192,24 +192,21 @@ vector<string> check_errors(string expr) {
         error.push_back(mis_para);
     }
 
-    if (divide_by_zero(expr)) {
-        string zero = "Arithemtic Error: Divide by zero error";
-    }
-
     return error;
 }
 
+//Takes error vector and prints appropriate error response 
 int print_errors(vector<string> error) {
     vector<string>::iterator line = error.begin();
 
-    cout << "Possible errors in the expression:\n";
+    cout << "Possible syntax errors in the expression:\n";
     if (error.size() > 0) {
         for (line; line < error.end(); line++) {
             cout << *line << "\n";
             return 1; 
         }
     } else {
-        cout << "No errors found\n";
+        cout << "No syntax errors found\n";
         return 0; 
     }
     return 0; 
@@ -225,8 +222,18 @@ double applyOp(double a, double b, char op){
         case '+': return a + b; // Handles addition
         case '-': return a - b; // Handles subtraction
         case '*': return a * b; // Handles multiplication
-        case '/': return a / b; // Handles division
-        case '^': return pow(a, b); // Handles exponentiation
+        case '/': 
+            if (b == 0) {
+                cout << "Arithmetic Error: Divide by zero error" << endl; 
+            } else {
+                return a / b; // Handles division
+            }
+        case '^': 
+            if (b < 1 && a < 0) {
+                cout << "Arithmetic Error: Square root of negative error" << endl; 
+            } else {
+                return pow(a, b); // Handles exponentiation
+            }
         case '%': return fmod(a, b); // Handles modulo operation
     }
     return 0; // Default return in case of an unknown operator
@@ -305,8 +312,8 @@ int main(){
     cout << "Enter the expression: "; // Prompts the user for an expression
     std::getline(std::cin, expression); // Reading the entire line as an expression
 
-    vector<string> error = check_errors(expression); 
-    int check = print_errors(error); 
+    vector<string> error = check_errors(expression); //Checks for errors 
+    int check = print_errors(error); //Prints error messages according to error vector 
 
     if (check == 0) {
         double result = evaluate(expression); // Evaluating the expression
