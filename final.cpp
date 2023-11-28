@@ -124,39 +124,6 @@ int mismatch_parantheses(string expr) {
     }
 }
 
-//Determines if the expression is dividing by zero
-int divide_by_zero(string expr) {
-    int front = 0;
-    int back = 0;
-    int n;
-
-    for (int i=0; i < expr.length()-1; i++) {
-        if ((expr[i] == '/' || expr[i] == '%') && (expr[i+1] == '(')) {
-            front++;
-            //Finds denominator
-            for (n = i; n < expr.length(); n++) {
-                if (expr[n] == ')') {
-                    back++;
-                    //Checks if demoniator expression is finished
-                    if (front >= back) {
-                        string sub_expr = expr.substr(i, n-i);
-                        //Order of operations with sub_expr passed in
-                        //if (!(orderOfOperation(sub_expr))) {
-                        //    return 1;
-                        //}
-                    }
-                }
-            }
-            //Perform Order of Operations on denominator term
-            
-        } else if ((expr[i] == '/' || expr[i] == '%') && expr[i+1] == '0') {
-             return 1;
-        }
-    }
-
-    return 0;
-}
-
 vector<string> check_errors(string expr) {
     vector<string> error;
 
@@ -190,24 +157,20 @@ vector<string> check_errors(string expr) {
         error.push_back(mis_para);
     }
 
-    if (divide_by_zero(expr)) {
-        string zero = "Arithemtic Error: Divide by zero error";
-    }
-
     return error;
 }
 
 int print_errors(vector<string> error) {
     vector<string>::iterator line = error.begin();
 
-    cout << "Possible errors in the expression:\n";
+    cout << "Possible syntax errors in the expression:\n";
     if (error.size() > 0) {
         for (line; line < error.end(); line++) {
             cout << *line << "\n";
             return 1; 
         }
     } else {
-        cout << "No errors found\n";
+        cout << "No syntax errors found\n";
         return 0; 
     }
     return 0; 
