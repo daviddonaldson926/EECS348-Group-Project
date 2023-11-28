@@ -223,8 +223,18 @@ double applyOp(double a, double b, char op){
         case '+': return a + b; // Handles addition
         case '-': return a - b; // Handles subtraction
         case '*': return a * b; // Handles multiplication
-        case '/': return a / b; // Handles division
-        case '^': return pow(a, b); // Handles exponentiation
+        case '/': 
+            if (b == 0) {
+                cout << "Arithmetic Error: Divide by zero error" << endl; 
+            } else {
+                return a / b; // Handles division
+            }
+        case '^': 
+            if (b < 1 && a < 0) {
+                cout << "Arithmetic Error: Square root of negative error" << endl; 
+            } else {
+                return pow(a, b); // Handles exponentiation
+            }
         case '%': return fmod(a, b); // Handles modulo operation
     }
     return 0; // Default return in case of an unknown operator
