@@ -10,7 +10,6 @@
 using std::string;
 using std::vector;
 using std::cout;
-using std::endl;
 
 //Check if a given char is a num
 bool is_num(char num) {
@@ -54,7 +53,7 @@ int invalid_char(string expr) {
 int repeated_operator(string expr) {
     //Looks for repeated operator
     for (int i=0; i < expr.length()-1; i++) {
-        if ((is_operator(expr[i]) && is_operator(expr[i+1])) && ((expr[i] != '+') || (expr[i] != '-'))) {
+        if ((is_operator(expr[i]) && is_operator(expr[i+1]))) {
             return 1;
         }
     }
