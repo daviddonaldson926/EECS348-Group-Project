@@ -10,6 +10,7 @@
 using std::string;
 using std::vector;
 using std::cout;
+using std::endl;
 
 //Check if a given char is a num
 bool is_num(char num) {
