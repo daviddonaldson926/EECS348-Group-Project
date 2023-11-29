@@ -196,20 +196,13 @@ vector<string> check_errors(string expr) {
 }
 
 //Takes error vector and prints appropriate error response 
-int print_errors(vector<string> error) {
+void print_errors(vector<string> error) {
     vector<string>::iterator line = error.begin();
 
-    cout << "Possible syntax errors in the expression:\n";
-    if (error.size() > 0) {
-        for (line; line < error.end(); line++) {
-            cout << *line << "\n";
-            return 1; 
-        }
-    } else {
-        cout << "No syntax errors found\n";
-        return 0; 
+    cout << "Possible syntax errors in the expression:\n"; 
+    for (line; line < error.end(); line++) {
+        cout << *line << "\n";
     }
-    return 0; 
 }
 
 /*
@@ -313,16 +306,12 @@ int main(){
     std::getline(std::cin, expression); // Reading the entire line as an expression
 
     vector<string> error = check_errors(expression); //Checks for errors 
-    int check = print_errors(error); //Prints error messages according to error vector 
-
-    if (check == 0) {
+ 
+    if (error.size() == 0) {
         double result = evaluate(expression); // Evaluating the expression
         cout << "Result: " << result << endl; // Displaying the result
     } else {
-        vector<string>::iterator line = error.begin();
-        for (line; line < error.end(); line++) {
-            cout << *line << endl;
-        }
+        print_errors(error);//Prints error messages according to error vector
     }
 
     return 0; // End of main function
