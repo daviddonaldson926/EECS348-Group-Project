@@ -318,7 +318,12 @@ int main(){
     if (check == 0) {
         double result = evaluate(expression); // Evaluating the expression
         cout << "Result: " << result << endl; // Displaying the result
+    } else {
+        vector<string>::iterator line = error.begin();
+        for (line; line < error.end(); line++) {
+            cout << *line << endl;
+        }
     }
 
     return 0; // End of main function
-}
+} 
